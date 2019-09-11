@@ -1,0 +1,730 @@
+<!--
+
+
+     MONOLOG 2.0
+
+     by farkosten | index47
+
+
+ 
+-->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+
+<!--- change title here --->
+    
+       <title>{Title}</title>
+      
+       <link rel="shortcut icon" href="{Favicon}">
+       <link rel="altertnate" type="application/rss+xml" href="{RSS}">
+       
+       
+
+<!--- custom fonts: google webfonts --->
+
+    <link href='http://fonts.googleapis.com/css?family=Karla:400,400i,700,700i|PT+Mono|Lato:700' rel='stylesheet' type='text/css'>
+
+
+    
+    
+</head>
+<style type="text/css">
+    
+    * {  box-sizing: border-box; margin: 0; }
+    
+    html { margin: 0; overflow-x: hidden; }
+    
+    
+    ::-webkit-scrollbar{
+        width: 5px; height: 5px; }
+    
+    ::-webkit-scrollbar-track { 
+        background-color: white; }
+    
+    ::-webkit-scrollbar-thumb { 
+        border: 2px solid  white; 
+        background-color:  #efefef; }
+    
+    
+    
+    .tmblr-iframe.tmblr-iframe--desktop-logged-in-controls.iframe-controls--desktop,
+    #tumblr_controls{
+        position:fixed!important;
+        top:8px!important;
+        transform:scale(.9);
+        -webkit-transform:scale(.9);
+        -moz-transform:scale(.9);
+        z-index:9999!important;
+         filter:invert(100%);
+       -webkit-filter:invert(100%);
+       -moz-filter:invert(100%);
+        -ms-filter:invert(100%);
+        -o-filter:invert(100%);
+}
+
+    
+    body {
+        background-color:#fff;
+        font-size:10px;
+        font-family: 'Karla', sans-serif;
+        font-weight:400;
+        color: #000;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale; 
+    }
+    
+    
+    a { 
+        text-decoration: none; 
+        color:#000; 
+     -webkit-transition:all .2s linear;
+       transition:all .2s linear;  }
+    
+    a:hover { 
+        color:#666;
+        -webkit-transition:all .2s linear;
+       transition:all .2s linear;  }
+    
+    
+    /* tooltips */
+    
+    #s-m-t-tooltip {
+        position:absolute;
+        z-index:1000; 
+        text-align:center;
+        letter-spacing: 1px;
+        background-color:black;
+        color:white;
+        font-size:7px;
+        padding:3px 4px;
+        font-weight:700;
+        border-radius:2px;
+        font-family:'Lato', sans-serif;
+        text-transform: uppercase;
+        margin-top:10px;
+      }
+
+    
+    
+    #wrap {
+        width:80%;
+        max-width: 935px;
+        margin: 10vh auto;
+    }
+    
+    
+     /* header */
+    
+    
+    #header {
+        display:block;
+        margin-bottom:30px;
+    }
+    
+    .title { 
+        display:inline;
+        text-transform:uppercase;
+        font-size:26px;
+        letter-spacing:1px;
+        font-family:PT Mono; /* CHANGE PAGE TITLE FONT HERE */
+        padding-bottom:5px; 
+        padding-right:10px;
+        margin:20px 0;
+        border-bottom:1px solid black;
+        box-shadow: 0px 3px yellow; /* PICK YELLOW/BLUE/WHITE */
+    }
+
+
+    .links { 
+        display:inline-block; 
+        float:right;
+        padding-top:25px; }
+
+    .links a svg {
+        height: 1.3em;
+        margin:0 5px;  }
+
+    
+    
+    /* content */
+    
+    #grid {
+        width:100%;
+        margin:50px auto;
+    }
+    
+    
+    /* characters */
+    
+    
+    .ch {
+        display: inline-block;
+        background-color: white;
+        width:300px;
+        overflow: hidden;
+        margin:0 10px 40px 0;
+        height:313px; }
+	
+    .box, .tabs {
+        width:300px;
+        height:313px;
+        padding:5px 0 0 0;
+        border-top:1px solid black;
+        border-bottom: 1px solid black;
+        overflow: hidden; }
+    
+
+    
+    .tab-links:after { display:block; clear:both; content:''; }
+
+    .tab-content {
+        width:300px;
+        height:300px;
+        overflow: hidden; }
+
+
+    .tab {
+        display:none;-webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s; }
+
+    .tab.active {
+        display:block;-webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s; }
+
+
+
+    .img { 
+        width:300px;
+        height: 300px;
+        background-color: white; 
+        cursor:crosshair;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s; }
+
+    .img.top {
+        margin-top:-305px;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s; }
+
+
+    .na, .na2 {
+        position: absolute;
+        width:300px;
+        font-size:8.5px;
+        margin-top:7px;
+        font-weight: 900;
+        font-family:'Lato';
+        padding-left:2px;
+        text-transform: lowercase; 
+        letter-spacing: 2px;
+        text-align:left;}
+
+    .na2 {  text-transform: uppercase; margin-top:16px; text-align:left; padding-left:0px;  }
+
+    .na span, .na2 span { 
+        display:inline; 
+        text-transform: uppercase; }
+
+    
+    .yellow { background-color:yellow; }
+    .blue { background-color:#99FFEB; }
+    .white { background-color:#ffffff; }
+
+
+    .text {
+        width:300px;
+        height:300px;
+        overflow:auto;
+        background-color:white;
+        padding:10px 0px;
+        margin:0px 0;
+        text-align:justify;
+        line-height:150%; }
+
+    .c { 
+        display:block; 
+        padding:0 0 20px 0;
+        margin-bottom:20px; }
+
+    .c p { 
+        display:inline-block;
+        float:left;
+        width:140px;
+        margin:0 5px 10px 0px; }
+
+    .c p.cb { display:block; width:280px; }
+
+    .c c { 
+        display:block;
+        text-transform:uppercase; 
+        font-size:9.5px; 
+        letter-spacing:0.5px;
+        padding-bottom:4px;}
+
+    .c an {
+        display:block; 
+        text-align:left;
+        height:30px;
+        background-color:#fafafa;
+        border:1px solid #ececec;
+        overflow:auto;
+        padding:5px;  }
+
+    
+   
+    .nav { 
+        float:right; 
+        margin-top:-1px; 
+        font-size:7px; 
+    }
+
+    .nav { 
+        text-align:right; }
+
+    .nav li { 
+        display: inline-block;
+        list-style:none; }
+
+    .nav li a { 
+        display:inline-block; 
+        width:5px; 
+        height:5px; 
+        background-color: white;
+        border-radius:100%;  
+        border:1px solid black; 
+        margin:0 0 0 10px; }
+
+    .nav li.active a, li a:hover { 
+        background-color:black;
+    }
+
+
+   
+    
+    /* credit - do not remove */
+    
+    #cre a {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 20px;
+        color:black;
+        font-weight: 700;
+        padding:5px;
+        border:1px solid #ccc;
+        border-radius: 100%;
+        font-size:10px; }
+    
+    
+    </style>
+    <body>
+        
+        
+    <!---------------------------------
+
+HOW TO USE THIS PAGE:
+--------
+
+
+001. To add more characters, copy+paste everything in between these tags: 
+
+     <!- CHARACTER: CLICK -> or <!- CHARACTER: TABS ->
+
+    
+002. <span class="yellow">FIRST LAST</span> can be changed to blue or white.
+    
+
+003. This page uses Feather Icons. You can choose your own icons at http://fortawesome.github.io/Font-Awesome/
+    
+    
+AVAILABLE DESIGNS:
+    
+ - CLICK (first)
+ - TABS (second)
+
+
+IMPORTANT:
+
+HOW TO USE TABS
+----
+1. Each character has three tabs, but you can not use the same numbers for every character. This means that for every character you add, you must increase the tab numbers. For example:
+
+    Character #1 uses tab1, tab2, tab3
+    Character #2 uses tab4, tab5, tab6
+
+2. These tab numbers need to be changed/added in two places.
+
+    <div id="tab1" class="tab active"> or <div id="tab2" class="tab">
+
+    and
+
+    <a href="#tab1"></a>
+
+3. Don't worry! The code tells you where to change these.
+
+
+
+--------------------------------->
+
+        
+        
+        
+<section id="wrap">
+    
+    <article id="header">
+    
+        <div class="title">
+               <!--- PAGE TITLE ---> CHARACTERS
+        </div>
+
+        <div class="links">
+
+                <!--- LINK 1 --->
+                <a href="URL HERE" title="TITLE"> <!--- ICON ---> <i data-feather="home"></i> </a> 
+
+                <!--- LINK 2 --->
+                <a href="URL HERE" title="TITLE"> <!--- ICON 2 ---> <i data-feather="feather"></i> </a> 
+
+        </div>
+        
+    </article>
+    
+    
+    <article id="grid">
+    
+        
+    
+        <!------------ CHARACTER: CLICK ----------->
+
+
+        <div class="ch"><div class="box">
+        <div class="img" title="click me">
+
+
+            <!--- IMAGE---><img src="https://static.tumblr.com/czxfsnf/jVrns7747/1.png"> 
+
+
+        <div class="text"><div class="c">
+
+                <!--- NAME #1 ---><p><c><b>FULL NAME</b></c>
+                <!--- NAME #2 ---><an>First Middle Last</an></p>
+
+                <!--- AGE #1 ---><p><c><b>AGE</b></c>
+                <!--- AGE #2 ---><an>Age here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- BIRTHDAY #1 ---><p><c><b>BIRTHDAY</b></c>
+                <!--- BIRTHDAY #2 ---><an>Month Day, Year</an></p>
+
+                <!--- OCCUPATION--->
+                <!--- OCCUPATION #1 ---><p><c><b>OCCUPATION</b></c>
+                <!--- OCCUPATION #2 ---><an>Occupation here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- MBTI #1 ---><p><c><b>MBTI</b></c> 
+                <!--- MBTI #2 ---><an>MBTI personality type here</an></p>
+
+                <!--- ZODIAC #1 ---><p><c><b>Star sign</b></c> 
+                <!--- ZODIAC #2 ---><an>Star sign here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- ORIENTATION #1 ---><p><c><b>ORIENTATION</b></c>
+                <!--- ORIENTATION #2 ---><an>Orientation here</an></p>
+
+                <!--- SPOUSE #1 ---><p><c><b>S.O./SPOUSE</b></c>
+                <!--- SPOUSE #2 ---><an>Spouse(s) name here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- PETS #1 ---><p><c><b>PETS</b></c>
+                <!--- PETS #2 ---><an>Pets here</an></p>
+
+                <!--- FC #1 ---><p><c><b>FACE CLAIM</b></c>
+                <!--- FC #2 ---><an>FC’s First Last</an></p>
+
+                <!--- FAMILY / COVERS ONE ROW --->
+                <!--- FAMILY #1 ---><p class="cb"><c><b>FAMILY</b></c>
+                <!--- FAMILY #2 ---><an style="height:auto;">
+
+                Write their family members here.
+
+                </an></p>
+
+
+        <!------- start of likes/dislikes / can be removed ------>
+
+                <!--- LIKES #1 ---><p class="cb"><c><b>LIKES</b></c>
+                <!--- LIKES #2 ---><an style="height:auto;">
+
+                Write their likes here.    
+
+                </an></p>
+
+                <!--- DISLIKES #1 ---><p class="cb"><c><b>DISLIKES</b></c>
+                <!--- DISLIKES #2 ---><an style="height:auto;">
+
+                Write their dislikes here.  
+
+                </an></p>
+
+         <!------- end of likes/dislikes / can be removed ------>
+
+
+               
+        <p class="cb"><c><b> 
+               
+               <!--- BIO TITLE --->BIOGRAPHY
+               
+            
+        </b></c><an style="height:auto; text-align:justify;">
+
+
+               <!--- BIO ---> Biography goes here
+
+
+        </an></p>
+    </div>
+    </div>
+
+    </div>
+    </div>
+    
+            <div class="na">
+            <!--- can be removed --->name:&nbsp;<!--- can be removed --->
+
+            <!--- CHARACTER NAME / choose yellow/blue/white -->
+                
+                <span class="yellow">FIRST LAST</span>
+
+            </div>
+    
+    </div>
+
+    
+
+    <!------------ CHARACTER: CLICK ----------->    
+        
+    
+        
+        
+    <!------------ CHARACTER: TABS ----------->
+
+
+    <div class="ch">
+      <div class="tabs">
+         <div class="tab-content">
+                        
+            <!--- TAB 1 ---> 
+             <div id="tab1" class="tab active">
+             <!--- IMAGE--->  <img src="https://static.tumblr.com/czxfsnf/jVrns7747/1.png">
+             </div>
+
+            <!--- TAB 2 ---> 
+             <div id="tab2" class="tab">
+                 
+                 <!--- FIRST TAB CONTENT --->
+                 
+                 <div class="text">
+                     <div class="c"> 
+                     
+
+                <!--- NAME #1 ---><p><c><b>FULL NAME</b></c>
+                <!--- NAME #2 ---><an>First Middle Last</an></p>
+
+                <!--- AGE #1 ---><p><c><b>AGE</b></c>
+                <!--- AGE #2 ---><an>Age here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- BIRTHDAY #1 ---><p><c><b>BIRTHDAY</b></c>
+                <!--- BIRTHDAY #2 ---><an>Month Day, Year</an></p>
+
+                <!--- OCCUPATION--->
+                <!--- OCCUPATION #1 ---><p><c><b>OCCUPATION</b></c>
+                <!--- OCCUPATION #2 ---><an>Occupation here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- MBTI #1 ---><p><c><b>MBTI</b></c> 
+                <!--- MBTI #2 ---><an>MBTI personality type here</an></p>
+
+                <!--- ZODIAC #1 ---><p><c><b>Star sign</b></c> 
+                <!--- ZODIAC #2 ---><an>Star sign here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- ORIENTATION #1 ---><p><c><b>ORIENTATION</b></c>
+                <!--- ORIENTATION #2 ---><an>Orientation here</an></p>
+
+                <!--- SPOUSE #1 ---><p><c><b>S.O./SPOUSE</b></c>
+                <!--- SPOUSE #2 ---><an>Spouse(s) name here</an></p>
+
+                <!--- <BR> ---><br>
+
+                <!--- PETS #1 ---><p><c><b>PETS</b></c>
+                <!--- PETS #2 ---><an>Pets here</an></p>
+
+                <!--- FC #1 ---><p><c><b>FACE CLAIM</b></c>
+                <!--- FC #2 ---><an>FC’s First Last</an></p>
+
+                <!--- FAMILY / COVERS ONE ROW --->
+                <!--- FAMILY #1 ---><p class="cb"><c><b>FAMILY</b></c>
+                <!--- FAMILY #2 ---><an style="height:auto; margin-bottom:10px;">
+
+                Write their family members here.
+
+                </an></p>
+
+
+                <!--- LIKES/DISLIKES BLURBS // REMOVE IF UNUSED --->
+
+                <!--- LIKES #1 ---><p class="cb"><c><b>LIKES</b></c>
+                <!--- LIKES #2 ---><an style="height:auto; margin-bottom:10px;">
+
+                Write their likes here.    
+
+                </an></p>
+
+                <!--- DISLIKES #1 ---><p class="cb"><c><b>DISLIKES</b></c>
+                <!--- DISLIKES #2 ---><an style="height:auto; margin-bottom:10px;">
+
+                Write their dislikes here.  
+
+                </an></p>
+
+                <!--- END OF LIKES/DISLIKES BLURBS // REMOVE IF UNUSED --->
+
+
+                   </div>
+                 </div>
+                 
+             </div>
+            <!--- TAB 2 ---> 
+             
+             
+            <!--- TAB 3 ---> 
+             <div id="tab3" class="tab">
+                 <div class="text">
+                 <div class="c">
+                     <p class="cb"><c><b><!--- BIO TITLE --->BIOGRAPHY</b></c>
+                         
+                         <an style="height:auto; margin-bottom:30px; text-align:justify;">
+                             <!--- CHARACTER BIO / BLURB GOES HERE ---> Biography goes here
+                         </an>
+                     </p>
+                 </div>
+                 </div>
+             </div>
+             
+             
+             
+             
+        </div>
+
+        <div class="na2">
+
+        <!--- CHARACTER NAME --->
+             FIRST LAST
+        <!--- CHARACTER NAME --->
+            
+            
+            <ul class="nav">
+                <li class="active">
+                    <!--- TAB 1 / change to 4/7/10/etc for every new character ---> 
+                    <a href="#tab1"></a>
+                </li>
+                <li>
+                    <!--- TAB 2 / change to 5/8/11/etc for every new character --->
+                    <a href="#tab2"></a>
+                </li>
+                <li>
+                    <!--- TAB 3 / change to 6/9/12/etc for every new character --->
+                    <a href="#tab3"></a>
+                </li>
+            </ul>
+            
+        </div>
+        
+    </div>
+    </div>
+
+
+        <!------------ CHARACTER: TABS ----------->
+    
+    
+    
+        
+        
+        
+        
+    </article>
+</section>
+        
+        
+        
+        
+    <!------------ CREDIT - DO NOT REMOVE ----------->
+        
+        
+<div id="cre"><a href="https://index47.tumblr.com/">47</a></div>
+     
+        
+        
+        
+        
+     <!------------ SCRIPTS ----------->
+       
+       
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.tumblr.com/ko1mcho/PMbmlkh9e/jquery.style-my-tooltips.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    feather.replace()
+ $('.img').click(function(){
+  $(this).toggleClass('top'); 
+ });
+});
+</script>
+
+<!--- style my tooltips --->
+<script>
+(function($){
+$(document).ready(function(){
+$("[title],a[title],img[title]").style_my_tooltips({
+tip_follows_cursor:"true",
+tip_delay_time:100,
+tip_fade_speed:100,
+attribute:"title"
+});
+});
+})(jQuery);
+</script> 
+
+
+<script>
+jQuery(document).ready(function() {
+ jQuery('.tabs .nav a').on('click', function(e)  {
+  var currentAttrValue = jQuery(this).attr('href');
+ // Show/Hide Tabs
+    jQuery('.tabs ' + currentAttrValue).fadeIn(10).siblings().hide();
+// Change/remove current tab to active
+    jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+    e.preventDefault();
+ });
+});
+</script>
+
+
+    </body>
+</html>
